@@ -241,7 +241,7 @@ bool Propagator::fast_state_propagate_cache(std::shared_ptr<State> state, double
   double time0 = state_plus_time + t_off;
   double time1 = timestamp + t_off;
   // NEW 
-  state_plus_time = timestamp;
+  state_plus_time = timestamp - t_off;
 
   std::vector<ov_core::ImuData> prop_data;
   {
