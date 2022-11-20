@@ -225,9 +225,16 @@ protected:
   Eigen::Matrix3d hat_M2B0;
 
   int skip_count = 0;
-  int pub_frequency = -1;
+  double pub_frequency = 0.0;
   float imu_rate = 0;
   float odom_rate = 0;
+  double last_timestamp = 0;
+
+  // double prev_position_timestamp = 0;
+  // double prev_position_x= 0;
+  // double prev_position_timestamp = 0;
+  // double prev_position_timestamp = 0;
+  // double prev_position_timestamp = 0;
 };
 
 } // namespace ov_msckf

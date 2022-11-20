@@ -12,7 +12,8 @@ cam0:
   distortion_model: radtan
   intrinsics: [341.22960229063585, 341.7601750650946, 324.23867816265897, 177.73891334897027]
   resolution: [640, 360]
-  rostopic: /zed_nodelet/left_raw/image_raw_gray
+  # rostopic: /zed_nodelet/left_raw/image_raw_gray
+  rostopic: /zedm/zed_node/left_raw/image_raw_gray
   timeshift_cam_imu: 0.018578411375301966
 cam1:
   T_cam_imu:
@@ -31,5 +32,6 @@ cam1:
   distortion_model: radtan
   intrinsics: [339.47415893257164, 339.90068477843045, 322.03019813729134, 176.3869590206423]
   resolution: [640, 360]
-  rostopic: /zed_nodelet/right_raw/image_raw_gray
+  # rostopic: /zed_nodelet/right_raw/image_raw_gray
+  rostopic: /zedm/zed_node/right_raw/image_raw_gray
   timeshift_cam_imu: 0.018532900923335312
