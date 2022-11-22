@@ -498,7 +498,8 @@ void ROS1Visualizer::visualize_odometry(double timestamp) {
     // Eigen::Vector3d w_iinI (state_plus_world(10),state_plus_world(11),state_plus_world(12));
     // Eigen::Vector3d w_BinB =  w_iinI;
     // Eigen::Vector3d v_BinB = T_ItoB.block(0,0,3,3)*v_iinIMU + skew_ItoB*T_ItoB.block(0,0,3,3)*w_iinI;
-    Eigen::Vector3d v_BinW = T_BtoW.block(0,0,3,3) * v_BinB ;
+    Eigen::Vector3d v_BinW = T_BtoW.block(0,0,3,3).transpose() * v_BinB ;
+    Eigen::Vector3d v_BinW = T_BtoB0.block(0,0,3,3).transpose() * v_BinB ;
 
     // Eigen::Vector3d v_BinB0 = T_MtoB0.block(0,0,3,3)* v_BinB ;
 
