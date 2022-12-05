@@ -583,6 +583,18 @@ void ROS1Visualizer::visualize_odometry(double timestamp) {
         }
       }
     }
+    
+
+    if ( cov_plus(0,0) > 0.05){
+      PRINT_ERROR(RED "Drift detected: pose covariance of x-x is too high %.6f\n",  cov_plus(0,0));
+    }
+    if ( cov_plus(1,1) > 0.05){
+      PRINT_ERROR(RED "Drift detected: pose covariance of y-y is too high %.6f\n",  cov_plus(0,0));
+    }
+    if ( cov_plus(2,2) > 0.05){
+      PRINT_ERROR(RED "Drift detected: pose covariance of z-z is too high %.6f\n",  cov_plus(0,0));
+    }
+      
     pub_odomworld.publish(odomBinW);
 
     if (published_odomIinM) {
@@ -606,6 +618,7 @@ void ROS1Visualizer::visualize_odometry(double timestamp) {
     }
     pub_odomworldB0.publish(odomBinB0);
   }
+
   // NOTE: since we use JPL we have an implicit conversion to Hamilton when we publish
   // NOTE: a rotation from GtoI in JPL has the same xyzw as a ItoG Hamilton rotation
   auto odom_pose_world = std::make_shared<ov_type::PoseJPL>();
@@ -681,9 +694,13 @@ void ROS1Visualizer::callback_inertial(const sensor_msgs::Imu::ConstPtr &msg) {
   _app->feed_measurement_imu(message);
 
   double startTime = ros::Time::now().toSec();
+#ifdef DEBUG_PUB
   std::cout << "The start time is " << ros::Time::now().toSec() << "\n";
-  if ((ros::Time::now().toSec() - last_timestamp) >=  pub_frequency){
+#endif
+if ((ros::Time::now().toSec() - last_timestamp) >=  pub_frequency){
+#ifdef DEBUG_PUB
     PRINT_INFO(REDPURPLE "visualize_odometry: %4.5f \n\n" RESET, ros::Time::now().toSec() - last_timestamp );
+#endif
     visualize_odometry(message.timestamp);
     last_timestamp = ros::Time::now().toSec();
   }
@@ -739,8 +756,10 @@ void ROS1Visualizer::callback_inertial(const sensor_msgs::Imu::ConstPtr &msg) {
   }
 
   double dt = ros::Time::now().toSec() - startTime;
+#ifdef DEBUG_PUB
   std::cout << "The end time is " << ros::Time::now() << "\n";
   std::cout << "The dt is " << dt << "\n";
+#endif
 }
 
 void ROS1Visualizer::callback_monocular(const sensor_msgs::ImageConstPtr &msg0, int cam_id0) {
