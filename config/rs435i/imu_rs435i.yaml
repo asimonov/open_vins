@@ -3,24 +3,10 @@
 imu0:
   # camera-vicon calibration low raw
   T_cam_body:  #camera to body
-    - [-0.01030107, -0.04807554,  0.99879058,  0.07063546]
-    - [-0.99974427,  0.02060449, -0.00931914, -0.03820127]
-    - [-0.02013155, -0.99863116, -0.04827549, -0.04474833]
+    - [-0.00360119,  0.00865547,  0.99995606,  0.07063546]
+    - [-0.99984679,  0.0170983,  -0.0037488, -0.03820127]
+    - [-0.01713,    -0.99981635,  0.00859257, -0.04474833]
     - [0.0, 0.0, 0.0, 1.0]
-     
-  T_body_world:
-    - [1.0, 0.0, 0.0, 0.0]
-    - [0.0, 1.0, 0.0, 0.0]
-    - [0.0, 0.0, 1.0, 0.085]
-    - [0.0, 0.0, 0.0, 1.0]
-  # zed mini imu uses left-hand coordinate system, the transformation from zed coordinate system to ros right-hand coordinate system is (x,y,z) -> (-y, x, z)
-  T_correct:
-    # - [1,0,0,0]
-    # - [0,1,0,0]
-    - [0,-1,0,0]
-    - [1,0,0,0]
-    - [0,0,1,0]
-    - [0,0,0,1]
 
   # accelerometer_noise_density: 1.4e-03 #1.4e-02  # [ m / s^2 / sqrt(Hz) ]   ( accel "white noise" )
   # accelerometer_random_walk: 8.0e-05    # [ m / s^3 / sqrt(Hz) ].  ( accel bias diffusion )
@@ -41,4 +27,4 @@ imu0:
   rostopic: /cam1/imu
   time_offset:  0.0052559264670291456
   update_rate: 400.0
-  odom_update_rate: 120.0
+  odom_update_rate: 120.0 
